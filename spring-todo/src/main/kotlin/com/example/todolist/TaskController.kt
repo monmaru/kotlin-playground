@@ -57,13 +57,12 @@ class TaskController(private val taskRepository: TaskRepository) {
     @PatchMapping("{id}")
     fun update(@PathVariable("id") id: Long,
                @Validated form: TaskUpdateForm,
-               bidingResult: BindingResult): String {
-        if (bidingResult.hasErrors())
+               bindingResult: BindingResult): String {
+        if (bindingResult.hasErrors())
             return "tasks/edit"
 
         val task = taskRepository.findById(id) ?: throw NotFoundException()
-        val newTask = task.copy(content = requireNotNull(form.content),
-                done = form.done)
+        val newTask = task.copy(content = requireNotNull(form.content), done = form.done)
         taskRepository.update(newTask)
         return "redirect:/tasks"
     }
