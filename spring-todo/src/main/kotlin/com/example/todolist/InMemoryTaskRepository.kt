@@ -2,7 +2,7 @@ package com.example.todolist
 
 import org.springframework.stereotype.Repository
 
-@Repository
+// @Repository
 class InMemoryTaskRepository : TaskRepository {
     private val tasks: MutableList<Task> = mutableListOf()
 

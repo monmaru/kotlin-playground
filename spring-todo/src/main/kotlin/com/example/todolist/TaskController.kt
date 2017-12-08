@@ -1,11 +1,13 @@
 package com.example.todolist
 
-
+import org.springframework.http.HttpStatus
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PatchMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.ExceptionHandler
+import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.stereotype.Controller
 import org.springframework.validation.BindingResult
 import org.springframework.validation.annotation.Validated
@@ -15,6 +17,10 @@ import org.springframework.web.bind.annotation.PathVariable
 @Controller
 @RequestMapping("tasks")
 class TaskController(private val taskRepository: TaskRepository) {
+
+    @ExceptionHandler(NotFoundException::class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    fun handleNotFoundException(): String = "tasks/not_found"
 
     @GetMapping("")
     fun index(model: Model): String {
