@@ -3,6 +3,7 @@ package com.example.todolist
 import org.springframework.stereotype.Repository
 
 // @Repository
+@Suppress("unused")
 class InMemoryTaskRepository : TaskRepository {
     private val tasks: MutableList<Task> = mutableListOf()
 
