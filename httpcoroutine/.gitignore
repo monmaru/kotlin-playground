@@ -1,0 +1,8 @@
+/dependencies/
+/ideaSDK/
+build/
+.DS_Store
+*.iml
+/.gradle
+/out
+/.idea
