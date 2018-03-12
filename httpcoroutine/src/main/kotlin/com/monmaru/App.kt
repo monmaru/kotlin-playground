@@ -18,15 +18,15 @@ fun main(args: Array<String>) = runBlocking {
         weather.await()
                 .forecasts
                 .filter { it.temperature.min != null && it.temperature.max != null  }
-                .map {
+                .forEach {
                     println(SimpleDateFormat("yyyy/MM/dd").format(it.date))
                     println("横浜の天気は「${it.telop}」です。")
                     println("最低気温 ${it.temperature.min!!.celsius}")
                     println("最高気温 ${it.temperature.max!!.celsius}")
                 }
-        bookCatalog.await().map { println(it) }
-        newEBooks.await().map { println(it) }
-        repositories.await().map { println(it)}
+        bookCatalog.await().forEach { println(it) }
+        newEBooks.await().forEach { println(it) }
+        repositories.await().forEach { println(it)}
     }
     println("Completed in $time ms")
 }
