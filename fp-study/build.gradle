@@ -33,7 +33,6 @@ dependencies {
     compile "io.arrow-kt:arrow-syntax:$arrow_version"
     compile "io.arrow-kt:arrow-optics:$arrow_version"
     compile "io.arrow-kt:arrow-effects:$arrow_version"
-    kapt    "io.arrow-kt:arrow-annotations-processor:$arrow_version"
     compile "io.arrow-kt:arrow-typeclasses:$arrow_version"
     compile "io.arrow-kt:arrow-data:$arrow_version"
     compile "io.arrow-kt:arrow-instances-core:$arrow_version"
