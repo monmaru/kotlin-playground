@@ -2,6 +2,7 @@ package com.monmaru.fp
 
 import arrow.core.*
 import arrow.data.*
+import arrow.syntax.function.forwardCompose
 import arrow.typeclasses.binding
 
 fun main(args: Array<String>) {
@@ -45,4 +46,15 @@ fun doState() {
     val bigPrice: Double = calculatePrice(100.0, 2.0).runA(mutableListOf("Init" toT 1000.0))
     println("bigPrice = $bigPrice")
     println("----- State Monad -----")
+}
+
+fun doComponse() {
+    val composed1 = findMatches compose allLines compose source
+    println(composed1("grepInputText"))
+
+    val composed2 = source forwardCompose allLines forwardCompose findMatches
+    println(composed2("grepInputText"))
+
+    val composed3 = source andThen allLines andThen findMatches
+    println(composed3("grepInputText"))
 }
