@@ -44,8 +44,8 @@ fun optionDivision(a: Int, b: Int, den: Int): Option<Pair<Int, Int>> {
 }
 
 fun flatMapDivision(a: Int, b: Int, den: Int): Option<Pair<Int, Int>> {
-    return optionDivide(a, den).flatMap { aDiv: Int ->
-        optionDivide(b, den).flatMap { bDiv: Int ->
+    return optionDivide(a, den).flatMap { aDiv ->
+        optionDivide(b, den).flatMap { bDiv ->
             Some(aDiv to bDiv)
         }
     }
@@ -53,19 +53,11 @@ fun flatMapDivision(a: Int, b: Int, den: Int): Option<Pair<Int, Int>> {
 
 fun comprehensionDivision(a: Int, b: Int, den: Int): Option<Pair<Int, Int>> {
     return Option.monad().binding {
-        val aDiv: Int = optionDivide(a, den).bind()
-        val bDiv: Int = optionDivide(b, den).bind()
+        val aDiv = optionDivide(a, den).bind()
+        val bDiv = optionDivide(b, den).bind()
         aDiv to bDiv
     }.fix()
 }
-
-fun main(args: Array<String>) {
-    println("division ${division(4, 2, 2)}")
-    println("option division ${optionDivision(4, 2, 2)}")
-    println("flatMap division ${flatMapDivision(4, 2, 2)}")
-    println("comprehension division ${comprehensionDivision(4, 2, 2)}")
-}
-
 
 /*
 fun main(args: Array<String>) {

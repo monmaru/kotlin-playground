@@ -7,17 +7,6 @@ import arrow.typeclasses.binding
 
 fun randomlyEither(): Either<String, Int> = randomlyOption().toEither { "Nothing here" }
 
-fun main(args: Array<String>) {
-    Either.monad<String>().binding {
-        val num1 = randomlyEither().bind()
-        val num2 = randomlyEither().mapLeft { s -> s.toUpperCase() }.bind()
-        num1 + num2
-    }.fix().fold(::println, ::println)
-
-    flatMapEitherDivision(3, 2, 4).fold(::println, ::println)
-    eitherDivision(3, 2, 4).fold(::println, ::println)
-    comprehensionEitherDivision(3, 2, 4).fold(::println, ::println)
-}
 
 fun eitherDivide(num: Int, den: Int): Either<String, Int> {
     val option = optionDivide(num, den)

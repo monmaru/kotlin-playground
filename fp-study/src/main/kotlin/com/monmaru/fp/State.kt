@@ -8,7 +8,6 @@ import arrow.core.toT
 import arrow.data.State
 import arrow.data.fix
 import arrow.data.run
-import arrow.data.runA
 import arrow.instances.monad
 import arrow.syntax.collections.plus
 import arrow.typeclasses.binding
@@ -46,19 +45,6 @@ fun calculatePrice(threshold: Double, discount: Double) = State().monad<PriceLog
     val price: Double = finalPrice().bind()
     price
 }.fix()
-
-
-fun main(args: Array<String>) {
-    val (history: PriceLog, price: Double) = calculatePrice(100.0, 2.0).run(mutableListOf("Init" toT 15.0))
-    println("Price: $price")
-    println("::History::")
-    history
-            .map { (text, value) -> "$text\t|\t$value" }
-            .forEach(::println)
-
-    val bigPrice: Double = calculatePrice(100.0, 2.0).runA(mutableListOf("Init" toT 1000.0))
-    println("bigPrice = $bigPrice")
-}
 
 
 fun <T, S> unfold(s: S, state: State<S, Option<T>>): Sequence<T> {

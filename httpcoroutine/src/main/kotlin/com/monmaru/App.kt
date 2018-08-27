@@ -1,12 +1,12 @@
 package com.monmaru
 
-import java.text.SimpleDateFormat
-import kotlin.system.measureTimeMillis
-import kotlinx.coroutines.experimental.*
 import com.monmaru.service.GitHubService
 import com.monmaru.service.OreillyService
 import com.monmaru.service.WeatherService
-
+import kotlinx.coroutines.experimental.async
+import kotlinx.coroutines.experimental.runBlocking
+import java.text.SimpleDateFormat
+import kotlin.system.measureTimeMillis
 
 fun main(args: Array<String>) = runBlocking {
     val time = measureTimeMillis {
