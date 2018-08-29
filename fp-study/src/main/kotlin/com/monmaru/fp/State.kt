@@ -1,17 +1,24 @@
 package com.monmaru.fp
 
 import arrow.core.*
-import arrow.core.None
-import arrow.core.Option
-import arrow.core.Tuple2
-import arrow.core.toT
-import arrow.data.State
-import arrow.data.fix
-import arrow.data.run
+import arrow.data.*
 import arrow.instances.monad
 import arrow.syntax.collections.plus
 import arrow.typeclasses.binding
 
+fun doState() {
+    println("----- State Monad -----")
+    val (history: PriceLog, price: Double) = calculatePrice(100.0, 2.0).run(mutableListOf("Init" toT 15.0))
+    println("Price: $price")
+    println("::History::")
+    history
+            .map { (text, value) -> "$text\t|\t$value" }
+            .forEach(::println)
+
+    val bigPrice: Double = calculatePrice(100.0, 2.0).runA(mutableListOf("Init" toT 1000.0))
+    println("bigPrice = $bigPrice")
+    println("----- State Monad -----")
+}
 
 typealias PriceLog = MutableList<Tuple2<String, Double>>
 

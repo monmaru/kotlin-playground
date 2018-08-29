@@ -4,6 +4,15 @@ import arrow.core.*
 import arrow.typeclasses.binding
 import java.util.*
 
+fun doOption() {
+    println("----- Option Monad -----")
+    println("division ${division(4, 2, 2)}")
+    println("option division ${optionDivision(4, 2, 2)}")
+    println("flatMap division ${flatMapDivision(4, 2, 2)}")
+    println("comprehension division ${comprehensionDivision(4, 2, 2)}")
+    println("----- Option Monad -----")
+}
+
 fun randomlyNull(): Int? {
     val random = Random()
     return if (random.nextBoolean()) random.nextInt() else null
