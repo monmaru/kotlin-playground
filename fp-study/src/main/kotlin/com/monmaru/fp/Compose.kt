@@ -5,7 +5,7 @@ import arrow.core.compose
 import arrow.syntax.function.forwardCompose
 import java.io.BufferedReader
 import java.io.FileReader
-import java.util.stream.Collectors;
+import java.util.stream.Collectors
 
 fun doComponse() {
     println(findMatches(allLines(source("grepInputText"))))

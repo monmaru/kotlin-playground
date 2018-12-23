@@ -52,6 +52,8 @@ dependencies {
     compile "io.arrow-kt:arrow-recursion:$arrow_version" //optional
     compile "io.arrow-kt:arrow-instances-recursion:$arrow_version" //optional
     compile "io.arrow-kt:arrow-integration-retrofit-adapter:$arrow_version" //optional
+
+    compile("io.arrow-kt:arrow-query-language:$arrow_version")
 }
 
 compileKotlin {
