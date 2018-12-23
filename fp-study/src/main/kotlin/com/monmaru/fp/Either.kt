@@ -3,6 +3,7 @@ package com.monmaru.fp
 import arrow.core.*
 import arrow.core.Either.Left
 import arrow.core.Either.Right
+import arrow.instances.either.monad.monad
 import arrow.typeclasses.binding
 
 fun doEither() {

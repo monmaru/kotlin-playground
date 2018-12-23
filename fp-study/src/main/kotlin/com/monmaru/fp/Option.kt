@@ -1,6 +1,7 @@
 package com.monmaru.fp
 
 import arrow.core.*
+import arrow.instances.option.monad.monad
 import arrow.typeclasses.binding
 import java.util.*
 
