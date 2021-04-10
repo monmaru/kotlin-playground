@@ -49,7 +49,7 @@ fun main() {
 
 private fun generateQRCode(p: QRCodeParameter): ByteArray {
     val codeWriter = QRCodeWriter()
-    val hints = mapOf(EncodeHintType.ERROR_CORRECTION to ErrorCorrectionLevel.L)
+    val hints = mapOf(EncodeHintType.ERROR_CORRECTION to ErrorCorrectionLevel.H)
     val bitMatrix = codeWriter.encode(p.text, BarcodeFormat.QR_CODE, p.width, p.height, hints)
     ByteArrayOutputStream().use {
         MatrixToImageWriter.writeToStream(bitMatrix, "png", it)
