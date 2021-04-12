@@ -35,7 +35,7 @@ fun Application.module() {
             call.respondText("pong")
         }
         post("/generate-qr-code") {
-            runCatching { generateQRCode(call.receive<QRCodeParameter>()) }
+            runCatching { generateQRCode(call.receive()) }
                 .onSuccess {
                     println("generateQRCode success")
                     call.respondBytes(it, ContentType.Image.PNG, HttpStatusCode.OK)
