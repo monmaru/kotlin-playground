@@ -57,13 +57,13 @@ fun main() {
 private fun generateQRCode(p: QRCodeParameter): ByteArray {
     val codeWriter = QRCodeWriter()
     val hints = mapOf(EncodeHintType.ERROR_CORRECTION to ErrorCorrectionLevel.H)
-    val bitMatrix = codeWriter.encode(p.text, BarcodeFormat.QR_CODE, p.size, p.size, hints)
+    val bitMatrix = codeWriter.encode(p.content, BarcodeFormat.QR_CODE, p.size, p.size, hints)
     val config = MatrixToImageConfig(MatrixToImageConfig.BLACK, MatrixToImageConfig.WHITE)
     val qrImage = MatrixToImageWriter.toBufferedImage(bitMatrix, config)
     return if (p.useLogo) {
-        convertPngByteArray(overlayLogo(qrImage))
+        convertToPngByteArray(overlayLogo(qrImage))
     } else {
-        convertPngByteArray(qrImage)
+        convertToPngByteArray(qrImage)
     }
  }
 
@@ -79,7 +79,7 @@ private fun overlayLogo(image: BufferedImage): BufferedImage {
     return combined
 }
 
-private fun convertPngByteArray(image: BufferedImage): ByteArray {
+private fun convertToPngByteArray(image: BufferedImage): ByteArray {
     ByteArrayOutputStream().use {
         ImageIO.write(image, "png", it)
         return it.toByteArray()
@@ -88,7 +88,7 @@ private fun convertPngByteArray(image: BufferedImage): ByteArray {
 
 @Serializable
 data class QRCodeParameter(
-    val text: String,
+    val content: String,
     val size: Int,
     val useLogo: Boolean
 )
